@@ -1,5 +1,5 @@
 import React from 'react'
-import {getUserId} from "../reducks/users/selectos"
+import {getUserId} from "../reducks/users/selectors"
 import {useSelector} from "react-redux"
 
 const Home = () => {
