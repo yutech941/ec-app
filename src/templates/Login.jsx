@@ -1,20 +1,18 @@
-import React from 'react'
-import {useDispatch,useSelector} from 'react-redux'
-import { siginIn } from '../reducks/users/oparation';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { siginIn } from "../reducks/users/oparation";
 
 const Login = () => {
-    const dispatch = useDispatch()
-    const selector = useSelector(state => state);
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
 
-    console.log(selector.router);
+  console.log(selector.router);
 
-    return(
-        <div>
-            <h2>ログイン</h2>
-            <button onClick={() => dispatch(siginIn())}>
-            ログインする
-            </button>
-        </div>
-    )
-}
-export default Login
+  return (
+    <div>
+      <h2>ログイン</h2>
+      <button onClick={() => dispatch(siginIn())}>ログインする</button>
+    </div>
+  );
+};
+export default Login;
