@@ -7,9 +7,9 @@ export default class LoginClass extends Component {
     return (
       <div>
         <h2>ログイン</h2>
-        <butoon onClick={() => this.props.actions.siginIn()}>
+        <button onClick={() => this.props.actions.signIn()}>
           ログインする
-        </butoon>
+        </button>
       </div>
     );
   }
