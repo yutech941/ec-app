@@ -1,12 +1,11 @@
-const initialState ={
-    products:{
-    },
-    users:{
-        icon:"",
-        isSignedIn:false,
-        uid:"",
-        username:""
-    }
+const initialState = {
+  products: {},
+  users: {
+    isSignedIn: false,
+    role: "",
+    uid: "",
+    username: "",
+  },
 };
 
-export default initialState
+export default initialState;
