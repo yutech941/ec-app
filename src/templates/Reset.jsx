@@ -1,0 +1,44 @@
+import React, { useCallback, useState } from "react";
+import { PraimaryButton, TextInput } from "../components/UIkit";
+import { resetPassword } from "../reducks/users/operations";
+import { useDispatch } from "react-redux";
+
+const Reset = () => {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+
+  const inputEmail = useCallback(
+    (event) => {
+      setEmail(event.target.value);
+    },
+    [setEmail]
+  );
+
+  return (
+    <div className={"c-section-container"}>
+      <h2 className={"u-text__headline u-text-center"}>パスワードのリセット</h2>
+      <div className="module-spacer--medium" />
+
+      <TextInput
+        fullWidth={true}
+        label={"メールアドレス"}
+        multiline={false}
+        required={true}
+        rows={1}
+        value={email}
+        type={"text"}
+        onChange={inputEmail}
+      />
+      <div className="module-spacer--medium" />
+      <div className={"center"}>
+        <PraimaryButton
+          label={"Reset Password"}
+          onClick={() => dispatch(resetPassword(email))}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Reset;

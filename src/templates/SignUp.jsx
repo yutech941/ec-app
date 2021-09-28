@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { PraimaryButton, TextInput } from "../components/UIkit";
 import { signUp } from "../reducks/users/operations";
 import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
 const SigunUp = () => {
   const dispatch = useDispatch();
@@ -92,6 +93,9 @@ const SigunUp = () => {
           }
         />
       </div>
+      <p onClick={() => dispatch(push("/signin"))}>
+        アカウントをお持ちの方はこちら
+      </p>
     </div>
   );
 };
