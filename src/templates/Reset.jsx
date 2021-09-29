@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { PraimaryButton, TextInput } from "../components/UIkit";
 import { resetPassword } from "../reducks/users/operations";
 import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
 
 const Reset = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Reset = () => {
 
   return (
     <div className={"c-section-container"}>
-      <h2 className={"u-text__headline u-text-center"}>パスワードのリセット</h2>
+      <h2 className={"u-text__headline u-text-center"}>パスワードリセット</h2>
       <div className="module-spacer--medium" />
 
       <TextInput
@@ -33,9 +34,13 @@ const Reset = () => {
       <div className="module-spacer--medium" />
       <div className={"center"}>
         <PraimaryButton
-          label={"Reset Password"}
+          label={"パスワードをリセットする"}
           onClick={() => dispatch(resetPassword(email))}
         />
+        <div className={"module-spacer--small"} />
+        <p className={"u-text-small"} onClick={() => dispatch(push("/signin"))}>
+          ログイン画面に戻る
+        </p>
       </div>
     </div>
   );
