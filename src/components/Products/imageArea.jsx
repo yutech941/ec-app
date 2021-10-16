@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import { AddPhotoAlternateIcon } from "@material-ui/icons/AddPhotoAlternate";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 const ImageArea = (props) => {
   return (
