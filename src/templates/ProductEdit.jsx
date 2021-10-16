@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { PraimaryButton, SelectBox, TextInput } from "../components/UIkit";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../reducks/products/operations";
+import ImageArea from "../components/Produscts/imageArea";
 
 const ProductEdit = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const ProductEdit = () => {
     <section>
       <h2 className={"u-text__headline u-text-center"}>商品の登録・編集</h2>
       <div className={"c-section-container"}>
+        <ImageArea />
         <TextInput
           fullWidth={true}
           label={"商品名"}
