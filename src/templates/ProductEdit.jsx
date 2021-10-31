@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { PraimaryButton, SelectBox, TextInput } from "../components/UIkit";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../reducks/products/operations";
-import ImageArea from "../components/Products/ImageArea";
+import ImageArea from "../components/Products/imageArea";
 
 const ProductEdit = () => {
   const dispatch = useDispatch();
@@ -101,7 +101,9 @@ const ProductEdit = () => {
           <PraimaryButton
             label={"商品情報を保存"}
             onClick={() =>
-              dispatch(saveProduct(name, description, category, gender, price))
+              dispatch(
+                saveProduct(name, description, category, gender, price, images)
+              )
             }
           />
         </div>

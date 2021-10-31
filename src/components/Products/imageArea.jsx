@@ -3,6 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { makeStyles } from "@material-ui/styles";
 import { storage } from "../../firebase/index";
+import { useDispatch } from "react-redux";
 import ImagePreview from "./ImagePreview";
 
 const useStyles = makeStyles({
@@ -14,6 +15,22 @@ const useStyles = makeStyles({
 
 const ImageArea = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const images = props.images;
+
+  const deleteImage = useCallback(
+    async (id) => {
+      const ret = window.confirm("この画像を削除しますか？");
+      if (!ret) {
+        return false;
+      } else {
+        const newImages = images.filter((image) => image.id !== id);
+        props.setImages(newImages);
+        return storage.ref("images").child(id).delete();
+      }
+    },
+    [images]
+  );
 
   const uploadImage = useCallback(
     (event) => {
@@ -46,7 +63,12 @@ const ImageArea = (props) => {
       <div className={"p-grid__list-images"}>
         {props.images.length > 0 &&
           props.images.map((image) => (
-            <ImagePreview id={image.id} path={image.path} key={image.id} />
+            <ImagePreview
+              delete={deleteImage}
+              id={image.id}
+              path={image.path}
+              key={image.id}
+            />
           ))}
       </div>
       <div className="u-text-right">
