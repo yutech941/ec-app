@@ -3,6 +3,7 @@ import { PraimaryButton, SelectBox, TextInput } from "../components/UIkit";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../reducks/products/operations";
 import ImageArea from "../components/Products/imageArea";
+import SetSizeArea from "../components/Products/SetSizeArea";
 import { db } from "../firebase/index";
 
 const ProductEdit = () => {
@@ -21,7 +22,8 @@ const ProductEdit = () => {
     [category, setCategory] = useState(""),
     [gender, setGender] = useState(""),
     [images, setImages] = useState([]),
-    [price, setPrice] = useState("");
+    [price, setPrice] = useState(""),
+    [sizes, setSizes] = useState([]);
 
   const inputName = useCallback(
     (event) => {
@@ -122,7 +124,9 @@ const ProductEdit = () => {
           value={price}
           type={"number"}
         />
-        <div className={"module-spacer--medium"} />
+        <div className={"module-spacer--small"} />
+        <SetSizeArea sizes={sizes} />
+        <div className={"module-spacer--small"} />
         <div className={"center"}>
           <PraimaryButton
             label={"商品情報を保存"}
