@@ -125,7 +125,7 @@ const ProductEdit = () => {
           type={"number"}
         />
         <div className={"module-spacer--small"} />
-        <SetSizeArea sizes={sizes} />
+        <SetSizeArea sizes={sizes} setSizes={setSizes} />
         <div className={"module-spacer--small"} />
         <div className={"center"}>
           <PraimaryButton

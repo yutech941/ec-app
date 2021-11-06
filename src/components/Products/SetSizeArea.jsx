@@ -44,6 +44,23 @@ const SetSizeArea = (props) => {
     [setQuantity]
   );
 
+  const addSize = (index, size, quantity) => {
+    if (size === "" || quantity === "") {
+      return false;
+    } else {
+      props.setSizes((prevState) => [
+        ...prevState,
+        {
+          size: size,
+          quantity: quantity,
+        },
+      ]);
+      setIndex(index + 1);
+      setSize("");
+      setQuantity(0);
+    }
+  };
+
   return (
     <div>
       <TableContainer component={Paper}>
@@ -98,7 +115,10 @@ const SetSizeArea = (props) => {
             type={"number"}
           />
         </div>
-        <IconButton className={classes.CheckIcon}>
+        <IconButton
+          className={classes.checkIcon}
+          onClick={() => addSize(index, size, quantity)}
+        >
           <CheckCircleIcon />
         </IconButton>
       </TableContainer>
