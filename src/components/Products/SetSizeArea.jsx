@@ -48,17 +48,32 @@ const SetSizeArea = (props) => {
     if (size === "" || quantity === "") {
       return false;
     } else {
-      props.setSizes((prevState) => [
-        ...prevState,
-        {
-          size: size,
-          quantity: quantity,
-        },
-      ]);
-      setIndex(index + 1);
-      setSize("");
-      setQuantity(0);
+      if (index === props.sizes.length) {
+        props.setSizes((prevState) => [
+          ...prevState,
+          {
+            size: size,
+            quantity: quantity,
+          },
+        ]);
+        setIndex(index + 1);
+        setSize("");
+        setQuantity(0);
+      } else {
+        const newSizes = props.sizes;
+        newSizes[index] = { size: size, quantity: quantity };
+        props.setSizes(newSizes);
+        setIndex(newSizes.length);
+        setSize("");
+        setQuantity(0);
+      }
     }
+  };
+
+  const editSize = (index, size, quantity) => {
+    setIndex(index);
+    setSize(size);
+    setQuantity(quantity);
   };
 
   return (
@@ -75,12 +90,15 @@ const SetSizeArea = (props) => {
           </TableHead>
           <TableBody>
             {props.sizes.length > 0 &&
-              props.sizes.map((item, index) => (
+              props.sizes.map((item, i) => (
                 <TableRow key={item.size}>
                   <TableCell>{item.size}</TableCell>
                   <TableCell>{item.quantity}</TableCell>
                   <TableCell>
-                    <IconButton className={classes.iconCell}>
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => editSize(i, item.size, item.quantity)}
+                    >
                       <EditIcon />
                     </IconButton>
                   </TableCell>
