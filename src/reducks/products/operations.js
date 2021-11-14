@@ -10,6 +10,7 @@ export const saveProduct = (
   category,
   gender,
   price,
+  sizes,
   images
 ) => {
   return async (dispatch) => {
@@ -22,6 +23,7 @@ export const saveProduct = (
       images: images,
       name: name,
       price: parseInt(price, 10),
+      sizes: sizes,
       update_at: timestamp,
     };
 

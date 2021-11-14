@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -76,6 +76,15 @@ const SetSizeArea = (props) => {
     setQuantity(quantity);
   };
 
+  const deleteSize = (deleteIndex) => {
+    const newSizes = props.sizes.filter((item, i) => i !== deleteIndex);
+    props.setSizes(newSizes);
+  };
+
+  useEffect(() => {
+    setIndex(props.sizes.length);
+  }, [props.sizes.length]);
+
   return (
     <div>
       <TableContainer component={Paper}>
@@ -103,7 +112,10 @@ const SetSizeArea = (props) => {
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <IconButton className={classes.iconCell}>
+                    <IconButton
+                      className={classes.iconCell}
+                      onClick={() => deleteSize(i)}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
