@@ -140,8 +140,8 @@ const ProductEdit = () => {
                   category,
                   gender,
                   price,
-                  images,
-                  sizes
+                  sizes,
+                  images
                 )
               )
             }

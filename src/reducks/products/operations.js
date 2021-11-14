@@ -18,7 +18,7 @@ export const saveProduct = (
 
     const data = {
       category: category,
-      descritption: description,
+      description: description,
       gender: gender,
       images: images,
       name: name,
