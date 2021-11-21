@@ -24,14 +24,14 @@ export const saveProduct = (
       name: name,
       price: parseInt(price, 10),
       sizes: sizes,
-      update_at: timestamp,
+      updated_at: timestamp,
     };
 
     if (id === "") {
       const ref = productsRef.doc();
-      const id = ref.id;
-      data.id = id;
       data.created_at = timestamp;
+      id = ref.id;
+      data.id = id;
     }
 
     return productsRef
