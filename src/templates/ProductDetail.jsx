@@ -46,7 +46,7 @@ const ProductDetail = () => {
   const classes = useStyles();
   const selector = useSelector((state) => state);
   const path = selector.router.location.pathname;
-  const id = path.split("/product/");
+  const id = path.split("/product/")[1];
 
   const [product, setProduct] = useState(null);
 
@@ -70,7 +70,7 @@ const ProductDetail = () => {
             <p className={classes.price}>{product.price.toLocaleString()}</p>
             <div className={"module-spacer--small"} />
             <div className={"module-spacer--small"} />
-            <p>{returnCodeToBr(product.descirption)}</p>
+            <p>{returnCodeToBr(product.description)}</p>
           </div>
         </div>
       )}
