@@ -13,7 +13,7 @@ const ImageSwiper = (props) => {
     },
     navigation: {
       nextEl: ".swiper-button-next",
-      preEl: ".swiper-button-prev",
+      prevEl: ".swiper-button-prev",
     },
     loop: true,
   });
