@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { db } from "../firebase/index";
 import { makeStyles } from "@material-ui/styles";
 import HTMLReactParser from "html-react-parser";
+import { ImageSwiper } from "../components/Products";
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   detail: {
+    textAlign: "left",
     [theme.breakpoints.down("sm")]: {
       margin: "0 auto 24px auto",
       height: "auto",
@@ -64,7 +66,9 @@ const ProductDetail = () => {
     <section className="c-section-wrapin">
       {product && (
         <div className="p-grid__row">
-          <div className={classes.sliderBox}></div>
+          <div className={classes.sliderBox}>
+            <ImageSwiper images={product.images} />
+          </div>
           <div className={classes.detail}>
             <h2 className={"u-text__headline"}>{product.name}</h2>
             <p className={classes.price}>{product.price.toLocaleString()}</p>
