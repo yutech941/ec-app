@@ -22,3 +22,5 @@ const HeaderMenus = () => {
     </>
   );
 };
+
+export default HeaderMenus;
