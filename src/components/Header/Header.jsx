@@ -6,6 +6,7 @@ import logo from "../../assets/img/icons/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsSignedIn } from "../../reducks/users/selectors";
 import { push } from "connected-react-router";
+import { HeaderMenus } from "./index";
 
 const useStyles = makeStyles({
   root: {
@@ -40,7 +41,12 @@ const Header = () => {
             alt="logo"
             width="128px"
             onClick={() => dispatch(push("/"))}
-          ></img>
+          />
+          {isSignedIn && (
+            <div className={classes.iconButtons}>
+              <HeaderMenus />
+            </div>
+          )}
         </ToolBar>
       </AppBar>
     </div>
