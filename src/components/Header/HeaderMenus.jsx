@@ -7,7 +7,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { getProductsInCart, getUserId } from "../../reducks/users/selectors";
 import {useSelector} from 'react-redux'
 import {db} from '../../firebase/index'
-import { fetchProductsInCart } from "../../reducks/products/operations";
+import {useDispatch} from "react-redux";
+import { fetchProductsInCart } from "../../reducks/users/operations";
 
 const HeaderMenus = (props) => {
   const dispatch = useDispatch();
@@ -36,8 +37,11 @@ const HeaderMenus = (props) => {
                 default:
                   break;
         }
-      })
+      });
+
       dispatch(fetchProductsInCart(productsInCart))
+    });
+
     return () => unsubscribe()
   },[]);
 
@@ -56,7 +60,6 @@ const HeaderMenus = (props) => {
       </IconButton>
     </>
   );
-}
-
+};
 
 export default HeaderMenus;
