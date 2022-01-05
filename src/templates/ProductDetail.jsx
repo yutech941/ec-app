@@ -4,7 +4,7 @@ import { db, FirebaseTimestamp } from "../firebase/index";
 import { makeStyles } from "@material-ui/styles";
 import HTMLReactParser from "html-react-parser";
 import { ImageSwiper, SizeTable } from "../components/Products";
-import {addProductToCart} from './reducks/users/operations'
+import { addProductToCart } from '../reducks/users/operations'
 
 const useStyles = makeStyles((theme) => ({
   sliderBox: {
@@ -71,7 +71,7 @@ const ProductDetail = () => {
       description:product.description,
       gender:product.gender,
       images:product.images,
-      name:product.images,
+      name:product.name,
       price:product.price,
       productId:product.id,
       quantity:1,
