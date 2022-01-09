@@ -13,11 +13,11 @@ const CartList = () => {
             <h2 className="u-text__headline">
                 ショッピングカート
                 </h2>
-                <List>
+              {/*   <List>
                     {productsInCart.length > 0 && (
                         productsInCart.map(products => )
                     )}
-                </List>
+                </List> */}
         </section>
     )
 }
