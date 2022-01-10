@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { PraimaryButton, SelectBox, TextInput } from "../components/UIkit";
+import { PrimaryButton, SelectBox, TextInput } from "../components/UIkit";
 import { useDispatch } from "react-redux";
 import { saveProduct } from "../reducks/products/operations";
 import ImageArea from "../components/Products/imageArea";
@@ -129,7 +129,7 @@ const ProductEdit = () => {
         <SetSizeArea sizes={sizes} setSizes={setSizes} />
         <div className={"module-spacer--small"} />
         <div className={"center"}>
-          <PraimaryButton
+          <PrimaryButton
             label={"商品情報を保存"}
             onClick={() =>
               dispatch(

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { PraimaryButton, TextInput } from "../components/UIkit";
+import { PrimaryButton, TextInput } from "../components/UIkit";
 import { signIn } from "../reducks/users/operations";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
@@ -51,7 +51,7 @@ const SignIn = () => {
       />
       <div className="module-spacer--medium" />
       <div className={"center"}>
-        <PraimaryButton
+        <PrimaryButton
           label={"Sign in"}
           onClick={() => dispatch(signIn(email, password))}
         />
