@@ -1,3 +1,4 @@
+export {default as CartListItem} from './CartListItem'
 export { default as ImageArea } from "./imageArea";
 export { default as ImagePreview } from "./ImagePreview";
 export { default as ImageSwiper } from "./ImageSwiper";
