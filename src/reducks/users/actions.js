@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+export const DELETE_CART_LIST_ITEM = "DELETE_CART_LIST_ITEM"
+export const deleteCartListItemAction = (products) => {
+  return {
+    type: "DELETE_CART_LIST_ITEM",
+    payload: products,
+  };
+};
+
 export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_"
 export const fetchProductsInCartAction = (products) => {
   return {

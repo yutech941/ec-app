@@ -1,6 +1,23 @@
-import { fetchProductsInCartAction,signInAction, signOutAction } from "./actions";
+import { deleteCartListItemAction, fetchProductsInCartAction,signInAction, signOutAction } from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
+
+const usersRef = db.collection("users");
+
+export const deleteProductFromCart = (id) => {
+  return async (dispatch, getState) => {
+    usersRef
+      .doc(id)
+      .delete()
+      .then(() => {
+        const prevProducts = getState().products.list;
+        const nextProducts = prevProducts.filter(
+          (product) => product.id !== id
+        );
+        dispatch(deleteCartListItemAction(nextProducts));
+      });
+  };
+};
 
 export const addProductToCart = (addedProduct) => {
   return async (dispatch, getState) => {
