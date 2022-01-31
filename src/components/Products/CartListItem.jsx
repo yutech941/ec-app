@@ -4,11 +4,10 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from "@material-ui/core/ListItemText"
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import {makeStyles} from '@material-ui/styles'
+import { useDispatch } from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton'
-import {useSelector} from 'react-redux'
-import {getUserId} from "../../reducks/users/selectors";
-import {db} from "../../firebase/index"
+import { deleteProductFromCart } from "../../reducks/users/operations";
 
 const useStyles = makeStyles({
     list: {
@@ -24,18 +23,12 @@ const useStyles = makeStyles({
 
 const  CartListItem = (props) => {
 const classes = useStyles();
-const selector = useSelector((state) => state);
-const uid = getUserId(selector);
+const dispatch = useDispatch();
 
 const image = props.product.images[0].path;
 const name = props.product.name;
 const price = props.product.price.toLocaleString();
 const size = props.product.size;
-
-const removeProductFromCart = (id) => {
-    return db.collection('users').doc(uid)
-    .collection('cart').doc(id).delete()
-};
 
 return (
     <>
@@ -51,7 +44,7 @@ return (
         primary={"¥" + price}
         />
         </div>
-        <IconButton onClick={() => removeProductFromCart(props.product.cartId)}>
+        <IconButton onClick={() => dispatch(deleteProductFromCart(props.product))}>
             <DeleteIcon />
         </IconButton>
     </ListItem>

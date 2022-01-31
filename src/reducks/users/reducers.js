@@ -6,7 +6,8 @@ export const UsersReducer = (state = initialState.users, action) => {
     case Actions.DELETE_CART_LIST_ITEM:
       return {
         ...state,
-        list: [...action.payload],
+        cart: 
+          [...action.payload]
       };
     case Actions.FETCH_PRODUCTS_IN_CART:
       return {

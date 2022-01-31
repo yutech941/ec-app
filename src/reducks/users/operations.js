@@ -2,20 +2,22 @@ import { deleteCartListItemAction, fetchProductsInCartAction,signInAction, signO
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
-const usersRef = db.collection("users");
 
-export const deleteProductFromCart = (id) => {
+export const deleteProductFromCart = (product) => {
   return async (dispatch, getState) => {
-    usersRef
-      .doc(id)
-      .delete()
-      .then(() => {
-        const prevProducts = getState().products.list;
-        const nextProducts = prevProducts.filter(
-          (product) => product.id !== id
-        );
-        dispatch(deleteCartListItemAction(nextProducts));
-      });
+    const uid = getState().users.uid;
+    const cartRef = db.collection('users').doc(uid).collection('cart').doc(product.cartId)
+    cartRef
+    .delete()
+    .then(() => {
+      const prevCartItem = getState().users.cart;
+      const nextCartItem = prevCartItem.filter(
+        (cartItem) => cartItem.cartId !== product.cartId
+      );
+      dispatch(deleteCartListItemAction(nextCartItem));
+    });
+
+    
   };
 };
 
