@@ -9,6 +9,7 @@ export const deleteCartListItemAction = (products) => {
 };
 
 export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_"
+export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_IN_CART"
 export const fetchProductsInCartAction = (products) => {
   return {
     type:"FETCH_PRODUCTS_IN_CART",
