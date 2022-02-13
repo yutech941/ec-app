@@ -8,7 +8,14 @@ export const deleteCartListItemAction = (products) => {
   };
 };
 
-export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_"
+export const FETCH_ORDERS_HISTORY = "FETCH_ORDERS_HISTORY";
+export const fetchOrdersHistoryAction = (orders) => {
+    return {
+        type: "FETCH_ORDERS_HISTORY",
+        payload: orders
+    }
+}
+
 export const FETCH_PRODUCTS_IN_CART = "FETCH_PRODUCTS_IN_CART"
 export const fetchProductsInCartAction = (products) => {
   return {

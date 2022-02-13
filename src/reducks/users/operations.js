@@ -1,4 +1,4 @@
-import { deleteCartListItemAction, fetchProductsInCartAction,signInAction, signOutAction } from "./actions";
+import { deleteCartListItemAction, fetchProductsInCartAction, fetchOrdersHistoryAction , signInAction, signOutAction } from "./actions";
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
@@ -15,9 +15,7 @@ export const deleteProductFromCart = (product) => {
         (cartItem) => cartItem.cartId !== product.cartId
       );
       dispatch(deleteCartListItemAction(nextCartItem));
-    });
-
-    
+    });    
   };
 };
 
@@ -28,6 +26,26 @@ export const addProductToCart = (addedProduct) => {
     addedProduct['cartId'] = cartRef.id;
     await cartRef.set(addedProduct)
     dispatch(push('/'))
+  }
+}
+
+export const fetchOrdersHistory = () => {
+  return async (dispatch,getState) => {
+    const uid = getState().users.uid;
+    const list = [];
+
+    db.collection('users').doc(uid)
+    .collection('orders')
+    .orderBy('updated_at','desc')
+    .get()
+    .then((snapshots) => {
+      snapshots.forEach(snapshots => {
+        const data = snapshots.data()
+        list.push(data)
+      })
+    })
+
+    dispatch(fetchOrdersHistoryAction(list))
   }
 }
 
@@ -42,7 +60,7 @@ export const listenAuthState = () => {
     return auth.onAuthStateChanged((user) => {
       if (user) {
         const uid = user.uid;
-
+  
         db.collection("users")
           .doc(uid)
           .get()
