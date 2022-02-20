@@ -2,6 +2,7 @@ import { deleteCartListItemAction, fetchProductsInCartAction, fetchOrdersHistory
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimestamp } from "../../firebase/index";
 
+const usersRef = db.collection('users')
 
 export const deleteProductFromCart = (product) => {
   return async (dispatch, getState) => {
@@ -30,22 +31,19 @@ export const addProductToCart = (addedProduct) => {
 }
 
 export const fetchOrdersHistory = () => {
-  return async (dispatch,getState) => {
-    const uid = getState().users.uid;
-    const list = [];
+  return async (dispatch, getState) => {
+      const uid = getState().users.uid;
+      const list = []
 
-    db.collection('users').doc(uid)
-    .collection('orders')
-    .orderBy('updated_at','desc')
-    .get()
-    .then((snapshots) => {
-      snapshots.forEach(snapshots => {
-        const data = snapshots.data()
-        list.push(data)
-      })
-    })
-
-    dispatch(fetchOrdersHistoryAction(list))
+      usersRef.doc(uid).collection('orders')
+          .orderBy('updated_at', "desc").get()
+          .then(snapshots => {
+              snapshots.forEach(snapshot => {
+                  const data = snapshot.data();
+                  list.push(data)
+              });
+              dispatch(fetchOrdersHistoryAction(list))
+          })
   }
 }
 
