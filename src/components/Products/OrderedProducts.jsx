@@ -30,6 +30,8 @@ const OrderedProducts = (props) => {
     const dispatch = useDispatch();
     const products = props.products;
 
+    console.log(props.products);
+
     const goToProductDetail = useCallback((id) => {
         dispatch(push('/product/' + id))
     },[])
@@ -52,7 +54,7 @@ const OrderedProducts = (props) => {
 
                         />
                     <ListItemText
-                        primary={"¥" * product.price.toLocaleString()}
+                        primary={"¥" + product.price.toLocaleString()}
 
                     />
                 </div>
