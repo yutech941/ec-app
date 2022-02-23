@@ -30,17 +30,15 @@ const OrderedProducts = (props) => {
     const dispatch = useDispatch();
     const products = props.products;
 
-    console.log(props.products);
-
     const goToProductDetail = useCallback((id) => {
         dispatch(push('/product/' + id))
     },[])
 
     return (
         <List>
-        {products.map((product) => (
-            <>
-                <ListItem className={classes.list} key={product.id}>
+        {products.map((product,i) => (
+            <React.Fragment key={i + product.id}>
+                <ListItem className={classes.list} >
                     <ListItemAvatar>
                         <img className={classes.image}
                             src={product.images[0].path}
@@ -65,7 +63,7 @@ const OrderedProducts = (props) => {
                     />
                 </ListItem>
                 <Divider/>
-            </>
+            </React.Fragment>
         ))}
         </List>
     );
